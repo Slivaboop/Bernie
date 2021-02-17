@@ -4,8 +4,8 @@ module.exports = {
 	execute(message, args) {
         const Discord = require('discord.js');
         const msg = message
-        const warn = require('../databases/warn.json'); 
-        const warns = require('../databases/warn.json'); 
+        const warn = require('../warn.json'); 
+        const warns = require('../warn.json'); 
         var warnUser = msg.guild.member(msg.mentions.users.first() || msg.guild.members.get(args[1]))
         const fs = require('fs');
 
@@ -53,7 +53,7 @@ if (!message.author.bot) {
     }
      
       try {
-        fs.writeFileSync('../databases/warn.json', JSON.stringify(warn));
+        fs.writeFileSync('../warn.json', JSON.stringify(warn));
       } catch(err) {
         console.error(err);
       }
@@ -96,7 +96,7 @@ if (!message.author.bot) {
 
    
     try {
-      fs.writeFileSync('../databases/warn.json', JSON.stringify(warn));
+      fs.writeFileSync('../warn.json', JSON.stringify(warn));
     } catch(err) {
       console.error(err);
     }

@@ -49,6 +49,9 @@ const NameEmbed = new Discord.MessageEmbed()
 	{ name: `Введите ссылку на изображение персонажа`, value: `Формат: **http://..**\nПишите, пожалуйста, аккуратно. Неверно введенная ссылка может испорить все!` },
 	)
 
+
+  
+
   
 
 
@@ -70,12 +73,15 @@ const NameEmbed = new Discord.MessageEmbed()
    
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      let filter = m => m.author.id === message.author.id
+     createdchannel.send(`<@${message.author.id}>`);
 
       createdchannel.send(NameEmbed);
+   
+
 
       await createdchannel.awaitMessages(filter, {
         max: 1,
-        time: 300000,
+        time: 1000 * 60 * 60 * 2,
         errors: ['time']
       }).then(message => {
           message = message.first()
@@ -90,7 +96,7 @@ const NameEmbed = new Discord.MessageEmbed()
       await createdchannel.send(Ageembed)
       await createdchannel.awaitMessages(filter, {
         max: 1,
-        time: 300000,
+        time: 1000 * 60 * 60 * 2,
         errors: ['time']
       }).then(message => {
           message = message.first()
@@ -101,7 +107,7 @@ const NameEmbed = new Discord.MessageEmbed()
       await createdchannel.send(Raceembed)
       await createdchannel.awaitMessages(filter, {
         max: 1,
-        time: 300000,
+        time: 1000 * 60 * 60 * 2,
         errors: ['time']
       }).then(message => {
           message = message.first()
@@ -112,7 +118,7 @@ const NameEmbed = new Discord.MessageEmbed()
       await createdchannel.send(bioembed)
       await createdchannel.awaitMessages(filter, {
         max: 1,
-        time: 300000,
+        time: 1000 * 60 * 60 * 2,
         errors: ['time']
       }).then(message => {
           message = message.first()
@@ -122,17 +128,18 @@ const NameEmbed = new Discord.MessageEmbed()
       await createdchannel.send(linkembed)
       await createdchannel.awaitMessages(filter, {
         max: 1,
-        time: 300000,
+        time: 1000 * 60 * 60 * 2,
         errors: ['time']
       }).then(message => {
           message = message.first()
+          
           Link = message.content.trim()
       })
       console.log(Name, Surname,Age, Race, Bio, Link)
 
-      if (heroes[`${Name}_${Surname}`] || !heroes[`${Name}_${Surname}`]) { 
+      if (heroes[message.author.id] || !heroes[message.author.id]) { 
     
-        heroes[`${Name}_${Surname}`] = {
+        heroes[message.author.id] = {
           name: Name,
           surname: Surname,
           age: Age,
@@ -156,11 +163,32 @@ const NameEmbed = new Discord.MessageEmbed()
 } else if (args[0] === 'find') {
 
 
-    var profile = `${args[1]}_${args[2]}`
+    var profile = message.mentions.users.first().id
+    
+    if (!profile) profile = message.author.id
+
+    if (!heroes[profile]) {
+      message.channel.send('Персонаж не найден!')
+      return
+    } else { 
+
+      const characterembed = new Discord.MessageEmbed()
+	.setColor('#1EBF8B')
+  .setTitle(`Персонаж:`)
+  .setAuthor(message.mentions.users.first().username)
+  .setDescription('А вот так вот')
+	.addFields(
+	{ name: `Имя:`, value: `${heroes[message.mentions.users.first().id].name}` },
+  { name: `Фамилия:`, value: `${heroes[message.mentions.users.first().id].surname}` },
+  { name: `Возраст:`, value: `${heroes[message.mentions.users.first().id].age}` },
+  { name: `Раса:`, value: `${heroes[message.mentions.users.first().id].race}` },
+  { name: `Автор:`, value: `${message.mentions.users.first().username}` },
+ )
+  .setImage(`${heroes[message.mentions.users.first().id].link}`)
     
     console.log(profile)
-    message.channel.send(`Имя: ${heroes[profile].name}\nФамилия: ${heroes[profile].surname}\nВозраст: ${heroes[profile].age}\nРаса: ${heroes[profile].race}\nАвтор: <@${heroes[profile].Author}>`);
-    message.channel.send(`Биография: ${heroes[profile].bio}\n Ссылка на арт: ${heroes[profile].link}`)
+    message.channel.send(characterembed);
+    message.channel.send(` ``Биография:`` ${heroes[profile].bio}`)
 
 
  
@@ -169,7 +197,14 @@ const NameEmbed = new Discord.MessageEmbed()
 
 
 
-
+} else if (args[0] === 'delete') {
+  if (!heroes[message.author.id]) {
+    message.channel.send('У вас нет действующих персонажей!')
+  } else { 
+delete heroes[message.author.id]
+return
+  }
+}
 
 	},
 };
