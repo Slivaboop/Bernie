@@ -39,7 +39,7 @@ if (!message.author.bot) {
       
       if (!warn[warnUser.id]) warn[warnUser.id] = { 
         warns: args[2],
-        reason: args[3],
+        reason: args.slice(3).join(' '),
         guild: message.guild.id
        };
    
@@ -47,7 +47,7 @@ if (!message.author.bot) {
       delete warn[warnUser.id]; 
       warn[warnUser.id] = {
         warns: args[2],
-        reason: args[3],
+        reason: reason = args.slice(3).join(' '),
         guild: message.guild.id
       }
     }
@@ -57,6 +57,7 @@ if (!message.author.bot) {
       } catch(err) {
         console.error(err);
       }
+      message.react("✅")
     }
   
         }
@@ -100,7 +101,9 @@ if (!message.author.bot) {
     } catch(err) {
       console.error(err);
     }
+    message.react("✅")
   }
+
 
 
 

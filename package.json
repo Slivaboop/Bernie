@@ -4,7 +4,8 @@
   "description": "",
   "main": "bot.js",
   "dependencies": {
-    "discord.js": "^12.5.1"
+    "discord.js": "^12.5.1",
+    "weather.js": "^0.1.0"
   },
   "devDependencies": {},
   "scripts": {
