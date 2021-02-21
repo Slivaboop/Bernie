@@ -23,13 +23,15 @@ wave[message.author.id] = {
 
 
 fs.writeFileSync(path.resolve(__dirname, '../waves.json'), JSON.stringify(wave));
-
+message.react("✅")
 
 
        }
 
 
        if (args[0] === 'set') { 
+
+        
 
   
 
@@ -41,6 +43,7 @@ fs.writeFileSync(path.resolve(__dirname, '../waves.json'), JSON.stringify(wave))
 
 
       fs.writeFileSync(path.resolve(__dirname, '../waves.json'), JSON.stringify(wave));
+      message.react("✅")
 
 
     }
@@ -53,7 +56,23 @@ fs.writeFileSync(path.resolve(__dirname, '../waves.json'), JSON.stringify(wave))
 
     var nexta = wave[message.author.id].currentwave
 
-    if (nexta > 9 && nexta < 99) { 
+
+    const offembed = new Discord.MessageEmbed()
+    .setColor('#1EBF8B')
+    .setThumbnail('https://media1.giphy.com/media/oI1lMznumRhOm9P3ax/giphy.gif')
+    .addFields(
+    { name: `Ваша текущая волна: **off**`, value: `Ваша рация выключена.\n Включите рацию, чтобы получать или отправлять сообщения` },
+    )
+
+
+
+    if (nexta === 0) { 
+     
+      message.channel.send(offembed)
+      return
+    }
+
+    else if (nexta > 9 && nexta < 99) { 
 
       const radioembed = new Discord.MessageEmbed()
       .setColor('#1EBF8B')
