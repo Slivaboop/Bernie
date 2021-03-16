@@ -78,7 +78,7 @@ message.react("✅")
       .setColor('#1EBF8B')
       .setThumbnail('https://media4.giphy.com/media/BJbt45dI6C2xSsL26n/giphy.gif')
       .addFields(
-      { name: `Ваша текущая волна: ${nexta}`, value: `    ${nexta-10}    ‌‌‍‍    ‌‌‍‍${nexta-5}    ‌‌‍‍    ‌‌‍‍${nexta}\n ∎⋯⋯⋯⋯⋯∎⋯⋯⋯⋯⋯∎\n             ▲ ` },
+      { name: `Ваша текущая волна: **${nexta} Гц**`, value: `    ${nexta-10}    ‌‌‍‍    ‌‌‍‍${nexta-5}    ‌‌‍‍    ‌‌‍‍${nexta}\n ∎⋯⋯⋯⋯⋯∎⋯⋯⋯⋯⋯∎\n             ▲ ` },
       { name: "Вас все слышат!", value:"**Передавайте сообщение!**"}
       )
       message.channel.send(radioembed)
