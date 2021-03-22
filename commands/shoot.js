@@ -18,9 +18,7 @@ var blood = new Array( // Объявление массива name и занес
 	'[:drop_of_blood:] Кровотечение',
 	'[:drop_of_blood:] Кровотечение',
 	'[:no_entry_sign:] Нет эффекта',
-	'[:no_entry_sign:] Нет эффекта',
-	'[:no_entry_sign:] Нет эффекта',
-	'[:no_entry_sign:] Нет эффекта',
+	'[:drop_of_blood:] Кровотечение',
 	'[:drop_of_blood:] Тяжелое кровотечение',
 );
 var organ = new Array( // Объявление массива name и занесение в него большого количества имён
