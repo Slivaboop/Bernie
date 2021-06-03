@@ -1,5 +1,5 @@
 module.exports = {
-	name: 'alchimestry',
+	name: 'alchemy',
 	description: 'shitty thing',
 	async execute(message, args) {
         const Discord = require('discord.js');
