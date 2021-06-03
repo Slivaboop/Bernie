@@ -43,7 +43,7 @@ var arm = new Array( // Объявление массива name и занесе
 
 );
 
-const cel = message.mentions.members.first(message, args[0]).username;
+const cel = message.mentions.users.first();
 
 
 goodhead = new Discord.MessageEmbed()
