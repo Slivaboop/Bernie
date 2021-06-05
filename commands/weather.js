@@ -20,6 +20,7 @@ module.exports = {
         }
         else {
           if (args[0] === 'start') {
+            global.intervalid = setInterval(()=>{
             
 
 
@@ -83,14 +84,14 @@ module.exports = {
             { name: 'Влажность воздуха:', value: `${vlvoz}%`, inline: true },
         )
  
-             global.intervalid = setInterval(()=>{
+             
               message.channel.send(weather); // the `TextChannel` class
             },1000*60*60*24) // setting the time to 24 hours in ms
 
 
           }
 
-        }
+        
         if (args[0] === 'break') {
           clearInterval(global.intervalid);
           console.log("ОСТАНОВЛЕНО!")
@@ -163,7 +164,7 @@ module.exports = {
           
           console.log("ОСТАНОВЛЕНО!")
         }
-		
+      }
 				
 	},
 };
